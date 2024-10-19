@@ -63,3 +63,8 @@ async def video_details(request: Request, video_id: int, query: str):
         "grade": selected_item['grade'],
         "m3u8_link": m3u8_link
     })
+HOST = "0.0.0.0"
+PORT = 7960
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run("main:app", host=HOST, port=PORT, log_level="info")
