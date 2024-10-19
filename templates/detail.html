@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }}</title>
+
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
+
+    <!-- Custom CSS for larger video and centered layout -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items towards the top */
+            flex-direction: column;
+            padding-top: 20px; /* Spacing from the top */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1, p {
+            text-align: center;
+            width: 100%;
+        }
+        .video-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        video {
+            width: 100%;  /* Let the video fill the container */
+            max-width: 1280px;  /* Maximum width for larger screens */
+            height: 720px;  /* Maintain 720p height */
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ name }}</h1>
+    <p>Categoria: {{ category }}</p>
+    <p>Grado: {{ grade }}</p>
+
+    <!-- Container to center the video -->
+    <div class="video-container">
+        <!-- Video.js Player -->
+        <video
+            id="hls-example"
+            class="video-js vjs-default-skin"
+            controls
+            preload="auto">
+            <!-- Embed the .m3u8 stream dynamically -->
+            <source src="{{ m3u8_link }}" type="application/x-mpegURL">
+        </video>
+    </div>
+
+    <!-- Link to the .m3u8 file -->
+    <p>
+        <a href="{{ m3u8_link }}" target="_blank">Link to m3u8</a>
+    </p>
+
+    <!-- JS for Video.js and HLS playback support -->
+    <script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+
+    <script>
+        // Initialize the player and force the width/height to be larger
+        var player = videojs('hls-example', {
+            width: 1280,  // Width of the video
+            height: 720   // Height of the video
+        });
+
+        // Autoplay video when the page loads
+        player.play();
+    </script>
+</body>
+</html>

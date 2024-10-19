@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Risultati della Ricerca</title>
+</head>
+<body>
+    <h1>Risultati per "{{ query }}"</h1>
+    <ul>
+        {% for result in results %}
+            <li>
+                <a href="/video/{{ loop.index }}?query={{ query }}">
+                    {{ result.value }} - {{ result.category }} - {{ result.grade }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
